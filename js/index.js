@@ -4,4 +4,12 @@ const fruits = [
     {id: 3, title: 'Mango', price: 40, img: 'https://st3.depositphotos.com/1020804/12760/i/450/depositphotos_127608560-stock-photo-mango-cubes-and-mango-fruit.jpg'},
 ]
 
-const modal = $.modal()
+const modal = $.modal({
+    title: 'Modal',
+    closable: true,
+    content: `
+        <h4>Modal is working</h4>
+        <p>Lorem ipsum dolor sit.</p>
+    `,
+    width: '400px'
+})
