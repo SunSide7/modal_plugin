@@ -32,9 +32,13 @@ $.modal = function(options) {
   const ANIMATION_SPEED = 200;
   const $modal = _createModal(options);
   let isClosing = false;
+  let isDestroyed = false;
 
   const modal = {
     open() {
+      if (isDestroyed) {
+          return console.log('Modal is destroyed')
+      }
       !isClosing && $modal.classList.add("open");
     },
     close() {
@@ -50,13 +54,19 @@ $.modal = function(options) {
     destroy() {},
   };
 
-  $modal.addEventListener('click', event => {
-      console.log('Clicked', event.target.dataset.close);
-
+  const listener = event => {
       if (event.target.dataset.close) {
           modal.close();
       }
-  })
+  }
 
-  return modal;
+  $modal.addEventListener('click', event => listener);
+
+  return Object.assign(modal, {
+      destroy() {
+          $modal.parentNode.removeChild($modal);
+          $modal.removeEventListener('click', listener);
+          isDestroyed = true;
+      }
+  });
 };
