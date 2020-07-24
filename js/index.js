@@ -23,3 +23,8 @@ const modal = $.modal({
         
     ]
 })
+
+
+const showModalButton = document.querySelector("#show-modal-btn");
+
+showModalButton.addEventListener('click', event => modal.open())

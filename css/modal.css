@@ -13,7 +13,6 @@
 }
 
 
-
 .vmodal.open .modal-window {
     transform: translateY(100px);
     
@@ -88,4 +87,9 @@
 .modal-footer {
     padding: 5px 10px;
     border-top: 1px solid #eee;
+}
+
+
+.show-modal-btn {
+    margin-top: 70px;
 }

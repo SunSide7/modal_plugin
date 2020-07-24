@@ -1,0 +1,20 @@
+.container {
+    text-align: center;
+}
+
+button {
+    padding: 4px 9px;
+    
+    border: none;
+    border-radius: 5px;
+
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.23);
+}
+
+.btn-primary {
+    /* background-color: #4867D6; */
+}
+
+.btn-danger {
+    background-color: #FF4040;
+}
