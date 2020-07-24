@@ -1,6 +1,6 @@
 function _createModal(options) {
     const modal = document.createElement('div')
-    modal.classList.add('.vmodal')
+    modal.classList.add('vmodal')
     modal.insertAdjacentHTML(
       "afterbegin",
       `
@@ -32,8 +32,13 @@ $.modal = function(options) {
   const $modal = _createModal(options);
 
   return {
-    open() {},
-    close() {},
+    open() {
+        $modal.classList.add('open');
+    },
+    close() {
+        $modal.classList.remove('open');
+
+    },
     destroy() {},
   };
 };
