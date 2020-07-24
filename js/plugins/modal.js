@@ -60,7 +60,7 @@ $.modal = function(options) {
       }
   }
 
-  $modal.addEventListener('click', event => listener);
+  $modal.addEventListener('click', event => listener(event));
 
   return Object.assign(modal, {
       destroy() {
