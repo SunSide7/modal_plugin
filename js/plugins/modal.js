@@ -5,11 +5,11 @@ function _createModal(options) {
     modal.insertAdjacentHTML(
       "afterbegin",
       `
-        <div class="modal-overlay">
+        <div class="modal-overlay" data-close="true">
 			<div class="modal-window" style="width: ${options.width || DEFAULT_WIDTH}">
 				<div class="modal-header">
 					<span class="modal-title">${options.title || 'Window'}</span>
-					${options.closable ? '<span class="modal-close">&times;</span>' : ''}
+					${options.closable ? '<span class="modal-close" data-close="true">&times;</span>' : ''}
 				</div>
                 <div class="modal-body">
                     ${options.content || ''}
@@ -29,24 +29,34 @@ function _createModal(options) {
 }
 
 $.modal = function(options) {
-  const ANIMATION_SPEED = 200
+  const ANIMATION_SPEED = 200;
   const $modal = _createModal(options);
   let isClosing = false;
 
-  return {
+  const modal = {
     open() {
-        !isClosing && $modal.classList.add('open');
+      !isClosing && $modal.classList.add("open");
     },
     close() {
-        isClosing = true;
-        $modal.classList.remove('open');
-        $modal.classList.add('hide')
+      isClosing = true;
+      $modal.classList.remove("open");
+      $modal.classList.add("hide");
 
-        setTimeout(() => {
-            $modal.classList.remove('hide');
-            isClosing = false
-        }, ANIMATION_SPEED);
+      setTimeout(() => {
+        $modal.classList.remove("hide");
+        isClosing = false;
+      }, ANIMATION_SPEED);
     },
     destroy() {},
   };
+
+  $modal.addEventListener('click', event => {
+      console.log('Clicked', event.target.dataset.close);
+
+      if (event.target.dataset.close) {
+          modal.close();
+      }
+  })
+
+  return modal;
 };
