@@ -8,7 +8,7 @@ const modal = $.modal({
     title: 'Modal',
     closable: true,
     content: `
-        <p>Lorem ipsum dolor sit.</p>
+        <p>Modal Content</p>
     `,
     width: '400px',
     footerButtons: [
